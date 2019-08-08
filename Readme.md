@@ -1,7 +1,7 @@
 # Личный проект «Менеджер задач» [![Build status][travis-image]][travis-url]
 
 * Студент: [Анастасия Васинская](https://up.htmlacademy.ru/ecmascript/9/user/811447).
-* Наставник: `Неизвестно`.
+* Наставник: [Александр Мастеров](https://htmlacademy.ru/profile/id912463).
 
 ---
 
