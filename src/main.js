@@ -1,6 +1,6 @@
 'use strict';
 
-const menu = `
+const getMenuTemplate = () => `
   <section class="control__btn-wrap">
     <input
       type="radio"
@@ -29,7 +29,7 @@ const menu = `
   </section>
 `;
 
-const search = `
+const getSearchTemplate = () => `
 <section class="main__search search container">
   <input
     type="text"
@@ -41,63 +41,7 @@ const search = `
 </section>
 `;
 
-const filters = `
-<section class="main__filter filter container">
-  <input
-    type="radio"
-    id="filter__all"
-    class="filter__input visually-hidden"
-    name="filter"
-    checked/>
-  <label for="filter__all" class="filter__label">
-    All <span class="filter__all-count">13</span></label>
-  <input
-    type="radio"
-    id="filter__overdue"
-    class="filter__input visually-hidden"
-    name="filter"
-    disabled/>
-  <label for="filter__overdue" class="filter__label"
-    >Overdue <span class="filter__overdue-count">0</span></label>
-  <input
-    type="radio"
-    id="filter__today"
-    class="filter__input visually-hidden"
-    name="filter"
-    disabled/>
-  <label for="filter__today" class="filter__label">Today <span class="filter__today-count">0</span></label>
-  <input
-    type="radio"
-    id="filter__favorites"
-    class="filter__input visually-hidden"
-    name="filter"/>
-  <label for="filter__favorites" class="filter__label"
-    >Favorites <span class="filter__favorites-count">1</span></label>
-  <input
-    type="radio"
-    id="filter__repeating"
-    class="filter__input visually-hidden"
-    name="filter"/>
-  <label for="filter__repeating" class="filter__label"
-    >Repeating <span class="filter__repeating-count">1</span></label>
-  <input
-    type="radio"
-    id="filter__tags"
-    class="filter__input visually-hidden"
-    name="filter"/>
-  <label for="filter__tags" class="filter__label"
-    >Tags <span class="filter__tags-count">1</span></label>
-  <input
-    type="radio"
-    id="filter__archive"
-    class="filter__input visually-hidden"
-    name="filter"/>
-  <label for="filter__archive" class="filter__label"
-    >Archive <span class="filter__archive-count">115</span></label>
-</section>
-`;
-
-const task = `
+const getTaskTemplate = () => `
 <article class="card card--black">
   <div class="card__form">
     <div class="card__inner">
@@ -165,7 +109,7 @@ const task = `
 </article>
 `;
 
-const form = `
+const getFormTemplate = () => `
 <article class="card card--edit card--black">
   <form class="card__form" method="get">
     <div class="card__inner">
@@ -378,11 +322,11 @@ const form = `
 `;
 
 
-const buttonLoad = `
+const getButtonLoadTemplate = () => `
   <button class="load-more" type="button">load more</button>
 `;
 
-const boardTasks = `
+const getBoardTasksTemplate = () => `
 <section class="board container">
   <div class="board__filter-list">
     <a href="#" class="board__filter">SORT BY DEFAULT</a>
@@ -391,13 +335,50 @@ const boardTasks = `
   </div>
 
   <div class="board__tasks">
-    ${form}
-    ${task}
-    ${task}
-    ${task}
-    ${buttonLoad}
+    ${getFormTemplate()}
+    ${getTaskTemplate()}
+    ${getTaskTemplate()}
+    ${getTaskTemplate()}
+    ${getButtonLoadTemplate()}
   </div>
 </section>
+`;
+
+const getFilterTemplate = (name, count = 0, isChecked = false) => {
+  const id = name.toLowerCase();
+  return `
+    <input
+      type="radio"
+      id="filter__${id}"
+      class="filter__input visually-hidden"
+      name="filter"
+      ${!count ? `disabled` : ``}
+      ${isChecked ? `checked` : ``}
+    />
+    <label for="filter__${id}" class="filter__label">
+      ${name}
+      <span class="filter__${id}-count">${count}</span>
+    </label>`;
+};
+
+const filterElements = [
+  {name: `All`, count: 13, isChecked: true},
+  {name: `Overdue`, count: 0},
+  {name: `Today`, count: 0},
+  {name: `Favorites`, count: 1},
+  {name: `Repeating`, count: 1},
+  {name: `Tags`, count: 1},
+  {name: `Archive`, count: 115},
+];
+
+const filtersMarkup = filterElements
+  .map((filter) => getFilterTemplate(filter.name, filter.count, filter.isChecked))
+  .join(`\n`);
+
+const getFiltersTemplate = () => `
+  <section class="main__filter filter container">
+    ${filtersMarkup};
+  </section>
 `;
 
 const renderComponent = (container, markup) => {
@@ -407,7 +388,7 @@ const renderComponent = (container, markup) => {
 const containerMenu = document.querySelector(`.control`);
 const containerContent = document.querySelector(`.main`);
 
-renderComponent(containerMenu, menu);
-renderComponent(containerContent, search);
-renderComponent(containerContent, filters);
-renderComponent(containerContent, boardTasks);
+renderComponent(containerMenu, getMenuTemplate());
+renderComponent(containerContent, getSearchTemplate());
+renderComponent(containerContent, getFiltersTemplate());
+renderComponent(containerContent, getBoardTasksTemplate());
