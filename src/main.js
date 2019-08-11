@@ -5,7 +5,6 @@ import {
   getBoardTasksTemplate,
 } from './components';
 
-
 const renderComponent = (container, markup) => {
   container.insertAdjacentHTML(`beforeEnd`, markup);
 };
