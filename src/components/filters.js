@@ -30,6 +30,6 @@ const filtersMarkup = filterElements
 
 export const getFilters = () => `
   <section class="main__filter filter container">
-    ${filtersMarkup};
+    ${filtersMarkup}
   </section>
 `;

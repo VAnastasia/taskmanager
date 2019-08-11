@@ -1,7 +1,10 @@
-import {getMenuTemplate} from './components/site-menu.js';
-import {getSearchTemplate} from './components/search.js';
-import {getFilters} from './components/filters.js';
-import {getBoardTasksTemplate} from './components/board-task.js';
+import {
+  getMenuTemplate,
+  getSearchTemplate,
+  getFilters,
+  getBoardTasksTemplate,
+} from './components';
+
 
 const renderComponent = (container, markup) => {
   container.insertAdjacentHTML(`beforeEnd`, markup);

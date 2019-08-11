@@ -1,6 +1,6 @@
-import {getTaskTemplate} from './task.js';
-import {getFormTemplate} from './form.js';
-import {getButtonLoadTemplate} from './button-load.js';
+import {getTaskTemplate} from './task';
+import {getFormTemplate} from './form';
+import {getLoadButtonTemplate} from './button-load';
 
 export const getBoardTasksTemplate = () => `
 <section class="board container">
@@ -14,7 +14,7 @@ export const getBoardTasksTemplate = () => `
     ${getTaskTemplate()}
     ${getTaskTemplate()}
     ${getTaskTemplate()}
-    ${getButtonLoadTemplate()}
+    ${getLoadButtonTemplate()}
   </div>
 </section>
 `;
