@@ -1,6 +1,7 @@
 import {getTaskTemplate} from './task';
 import {getFormTemplate} from './form';
 import {getLoadButtonTemplate} from './button-load';
+import {getTask} from './data';
 
 export const getBoardTasksTemplate = () => `
 <section class="board container">
@@ -11,9 +12,9 @@ export const getBoardTasksTemplate = () => `
   </div>
   <div class="board__tasks">
     ${getFormTemplate()}
-    ${getTaskTemplate()}
-    ${getTaskTemplate()}
-    ${getTaskTemplate()}
+    ${getTaskTemplate(getTask())}
+    ${getTaskTemplate(getTask())}
+    ${getTaskTemplate(getTask())}
     ${getLoadButtonTemplate()}
   </div>
 </section>
