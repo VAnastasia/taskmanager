@@ -2,8 +2,7 @@ import {
   getMenuTemplate,
   getSearchTemplate,
   getFilters,
-  getBoardTasksTemplate,
-  getTask
+  getBoardTasksTemplate
 } from './components';
 
 const renderComponent = (container, markup) => {
@@ -17,5 +16,3 @@ renderComponent(containerMenu, getMenuTemplate());
 renderComponent(containerContent, getSearchTemplate());
 renderComponent(containerContent, getFilters());
 renderComponent(containerContent, getBoardTasksTemplate());
-
-console.log(getTask());

@@ -3,7 +3,23 @@ import {getFormTemplate} from './form';
 import {getLoadButtonTemplate} from './button-load';
 import {getTask} from './data';
 
-export const getBoardTasksTemplate = () => `
+const getTasksArray = (count) => {
+  const tasksArray = [];
+  for (let i = 0; i <= count; i++) {
+    tasksArray.push(getTask());
+  }
+  return tasksArray;
+};
+
+const renderTasks = (tasks) => {
+  return tasks.map((task) => {
+    return getTaskTemplate(task);
+  }).join(``);
+};
+
+const tasks = getTasksArray(8);
+
+const getBoardTasksTemplate = () => `
 <section class="board container">
   <div class="board__filter-list">
     <a href="#" class="board__filter">SORT BY DEFAULT</a>
@@ -12,10 +28,10 @@ export const getBoardTasksTemplate = () => `
   </div>
   <div class="board__tasks">
     ${getFormTemplate()}
-    ${getTaskTemplate(getTask())}
-    ${getTaskTemplate(getTask())}
-    ${getTaskTemplate(getTask())}
+    ${renderTasks(tasks)}
     ${getLoadButtonTemplate()}
   </div>
 </section>
 `;
+
+export {tasks, getBoardTasksTemplate};

@@ -19,17 +19,17 @@ const shuffleArray = (array) => {
 
 const getRandomItemArray = (array) => array[Math.floor(Math.random() * array.length)];
 const getDate = () => {
-  return Date.now() - (DAYS_WEEK * MS_DAY) + (Math.ceil(Math.random() * DAYS_FORTNIGHT) * MS_DAY);
+  return Date.now() - (DAYS_WEEK * MS_DAY) + (Math.round(Math.random() * DAYS_FORTNIGHT) * MS_DAY);
 };
 
 const getRepeatingDays = () => ({
-  'mo': Boolean(Math.round(Math.random())),
-  'tu': Boolean(Math.round(Math.random())),
-  'we': Boolean(Math.round(Math.random())),
-  'th': Boolean(Math.round(Math.random())),
-  'fr': Boolean(Math.round(Math.random())),
-  'sa': Boolean(Math.round(Math.random())),
-  'su': Boolean(Math.round(Math.random()))
+  mo: Boolean(Math.round(Math.random())),
+  tu: Boolean(Math.round(Math.random())),
+  we: Boolean(Math.round(Math.random())),
+  th: Boolean(Math.round(Math.random())),
+  fr: Boolean(Math.round(Math.random())),
+  sa: Boolean(Math.round(Math.random())),
+  su: Boolean(Math.round(Math.random()))
 });
 
 const getTags = () => {
@@ -42,7 +42,7 @@ const getTags = () => {
   return tags;
 };
 
-const getTask = () => ({
+export const getTask = () => ({
   description: getRandomItemArray(DESCRIPTIONS),
   dueDate: getDate(),
   repetingsDay: getRepeatingDays(),
@@ -51,5 +51,3 @@ const getTask = () => ({
   isFavorite: Boolean(Math.round(Math.random())),
   isArchive: Boolean(Math.round(Math.random()))
 });
-
-export {getTask};

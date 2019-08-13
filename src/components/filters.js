@@ -1,3 +1,9 @@
+import {tasks} from './data';
+
+const calcTaks = (key = `All`) => {
+  return tasks.filter((task) => task[key]).length;
+}
+
 const getFilterTemplate = ({name, count = 0, isChecked = false}) => {
   const id = name.toLowerCase();
   return `
