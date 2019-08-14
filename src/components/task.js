@@ -1,11 +1,11 @@
 const renderTags = (tags) => {
   const tagTemplate = [];
-  tags.forEach((tag) => tagTemplate.push(
-     `<span class="card__hashtag-inner">
-        <span class="card__hashtag-name">
-          #${tag}
-        </span>
-      </span>`));
+  tags.forEach((tag) => tagTemplate
+      .push(`<span class="card__hashtag-inner">
+               <span class="card__hashtag-name">
+                 #${tag}
+               </span>
+             </span>`));
   return tagTemplate.join(``);
 };
 

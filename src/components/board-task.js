@@ -5,7 +5,7 @@ import {getTask} from './data';
 
 const getTasksArray = (count) => {
   const tasksArray = [];
-  for (let i = 0; i <= count; i++) {
+  for (let i = 0; i < count; i++) {
     tasksArray.push(getTask());
   }
   return tasksArray;
@@ -17,7 +17,7 @@ const renderTasks = (tasks) => {
   }).join(``);
 };
 
-const tasks = getTasksArray(8);
+const tasks = getTasksArray(7);
 
 const getBoardTasksTemplate = () => `
 <section class="board container">

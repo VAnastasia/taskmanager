@@ -45,7 +45,7 @@ const getTags = () => {
 export const getTask = () => ({
   description: getRandomItemArray(DESCRIPTIONS),
   dueDate: getDate(),
-  repetingsDay: getRepeatingDays(),
+  repeatingsDays: getRepeatingDays(),
   tags: getTags(),
   color: getRandomItemArray(COLORS),
   isFavorite: Boolean(Math.round(Math.random())),
