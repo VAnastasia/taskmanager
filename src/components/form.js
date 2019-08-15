@@ -1,5 +1,5 @@
-export const getFormTemplate = () => `
-<article class="card card--edit card--black">
+export const getFormTemplate = ({dueDate, color, description}) => `
+<article class="card card--edit card--${color}">
   <form class="card__form" method="get">
     <div class="card__inner">
       <div class="card__control">
@@ -24,14 +24,14 @@ export const getFormTemplate = () => `
             class="card__text"
             placeholder="Start typing your text here..."
             name="text"
-          >This is example of new task, you can add picture, set date and time, add tags.</textarea>
+          >${description}</textarea>
         </label>
       </div>
       <div class="card__settings">
         <div class="card__details">
           <div class="card__dates">
             <button class="card__date-deadline-toggle" type="button">
-              date: <span class="card__date-status">no</span>
+              date: <span class="card__date-status">${new Date(dueDate).toDateString()}</span>
             </button>
             <fieldset class="card__date-deadline" disabled>
               <label class="card__input-deadline-wrap">

@@ -4,6 +4,7 @@ const COLORS = [`black`, `yellow`, `blue`, `green`, `pink`];
 const DAYS_WEEK = 7;
 const DAYS_FORTNIGHT = 14;
 const MS_DAY = 24 * 60 * 60 * 1000;
+const TASKS_AMOUNT = 0;
 
 const shuffleArray = (array) => {
   let j;
@@ -42,7 +43,7 @@ const getTags = () => {
   return tags;
 };
 
-export const getTask = () => ({
+const getTask = () => ({
   description: getRandomItemArray(DESCRIPTIONS),
   dueDate: getDate(),
   repeatingsDays: getRepeatingDays(),
@@ -51,3 +52,13 @@ export const getTask = () => ({
   isFavorite: Boolean(Math.round(Math.random())),
   isArchive: Boolean(Math.round(Math.random()))
 });
+
+const getTasksArray = (count) => {
+  const tasksArray = [];
+  for (let i = 0; i < count; i++) {
+    tasksArray.push(getTask());
+  }
+  return tasksArray;
+};
+
+export const tasksArray = getTasksArray(TASKS_AMOUNT);
