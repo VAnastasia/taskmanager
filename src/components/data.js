@@ -4,7 +4,7 @@ const COLORS = [`black`, `yellow`, `blue`, `green`, `pink`];
 const DAYS_WEEK = 7;
 const DAYS_FORTNIGHT = 14;
 const MS_DAY = 24 * 60 * 60 * 1000;
-const TASKS_AMOUNT = 0;
+const TASKS_AMOUNT = 20;
 
 const shuffleArray = (array) => {
   let j;
@@ -19,6 +19,7 @@ const shuffleArray = (array) => {
 };
 
 const getRandomItemArray = (array) => array[Math.floor(Math.random() * array.length)];
+
 const getDate = () => {
   return Date.now() - (DAYS_WEEK * MS_DAY) + (Math.round(Math.random() * DAYS_FORTNIGHT) * MS_DAY);
 };
