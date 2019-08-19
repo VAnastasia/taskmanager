@@ -1,16 +1,28 @@
-const renderTags = (tags) => {
-  const tagTemplate = [];
-  tags.forEach((tag) => tagTemplate
-      .push(`<span class="card__hashtag-inner">
-               <span class="card__hashtag-name">
-                 #${tag}
-               </span>
-             </span>`));
-  return tagTemplate.join(``);
-};
+import {formatTime, formatDate} from './task-date';
 
-const getTaskTemplate = ({repeatingsDays, color, isArchive, isFavorite, description, dueDate, tags}) => `
-<article class="card card--${color} ${Object.values(repeatingsDays).some((value) => value) ? `card--repeat` : ``}">
+const isRepeat = (repeatingsDays) =>
+  Object.values(repeatingsDays).some((value) => value);
+
+const renderTag = (tag) =>
+  `<span class="card__hashtag-inner">
+     <span class="card__hashtag-name">
+       #${tag}
+     </span>
+   </span>`;
+
+const renderTags = (tags) =>
+  tags.map(renderTag).join(``);
+
+const getTaskTemplate = ({
+  color = `black`,
+  description = ``,
+  repeatingsDays = isRepeat,
+  dueDate,
+  tags = [],
+  isArchive = false,
+  isFavorite = false,
+}) =>
+  `<article class="card card--${color} ${isRepeat(repeatingsDays) ? `card--repeat` : ``}">
   <div class="card__form">
     <div class="card__inner">
       <div class="card__control">
@@ -40,14 +52,14 @@ const getTaskTemplate = ({repeatingsDays, color, isArchive, isFavorite, descript
           <div class="card__dates">
             <div class="card__date-deadline">
               <p class="card__input-deadline-wrap">
-                <span class="card__date">${new Date(dueDate).toDateString()}</span>
-                <span class="card__time">${new Date(dueDate).getHours()}:${new Date(dueDate).getMinutes()}</span>
+                <span class="card__date">${formatDate(new Date(dueDate))}</span>
+                <span class="card__time">${formatTime(new Date(dueDate))}</span>
               </p>
             </div>
           </div>
           <div class="card__hashtag">
             <div class="card__hashtag-list">
-              ${renderTags(tags)}
+              ${tags.length > 0 ? renderTags(tags) : ``}
             </div>
           </div>
         </div>
@@ -57,11 +69,17 @@ const getTaskTemplate = ({repeatingsDays, color, isArchive, isFavorite, descript
 </article>
 `;
 
+export const noTasksTemplate = `
+  <p class="board__no-tasks">
+    Congratulations, all tasks were completed! To create a new click on
+    «add new task» button.
+  </p>`;
+
 export const renderTasks = (tasks, begin, end) => {
-  if (tasks.length) {
-    return tasks.splice(begin, end).map((task) => {
-      return getTaskTemplate(task);
-    }).join(``);
+  if (tasks.length > 0) {
+    return tasks.splice(begin, end)
+      .map((task) => getTaskTemplate(task))
+      .join(``);
   }
-  return false;
+  return ``;
 };

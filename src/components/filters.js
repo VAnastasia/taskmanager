@@ -1,6 +1,5 @@
-import {tasksArray} from './data';
-
-const MS_DAY = 24 * 60 * 60 * 1000;
+import {tasks} from './data';
+import {TIME_DAY} from './constants';
 
 const calcTasks = (array) => {
   return array.length;
@@ -23,13 +22,13 @@ const getFilterTemplate = ({name, count = 0, isChecked = false}) => {
 };
 
 const filterElements = [
-  {name: `All`, count: tasksArray.length, isChecked: true},
-  {name: `Overdue`, count: calcTasks(tasksArray.filter((task) => task.dueDate < Date.now()))},
-  {name: `Today`, count: calcTasks(tasksArray.filter((task) => Math.abs(task.dueDate - Date.now()) < MS_DAY))},
-  {name: `Favorites`, count: calcTasks(tasksArray.filter((task) => task.isFavorite))},
-  {name: `Repeating`, count: calcTasks(tasksArray.filter((task) => Object.values(task.repeatingsDays).some((value) => value)))},
-  {name: `Tags`, count: calcTasks(tasksArray.filter((task) => task.tags.size))},
-  {name: `Archive`, count: calcTasks(tasksArray.filter((task) => task.isArchive))},
+  {name: `All`, count: tasks.length, isChecked: true},
+  {name: `Overdue`, count: calcTasks(tasks.filter((task) => task.dueDate < Date.now()))},
+  {name: `Today`, count: calcTasks(tasks.filter((task) => Math.abs(task.dueDate - Date.now()) < TIME_DAY))},
+  {name: `Favorites`, count: calcTasks(tasks.filter((task) => task.isFavorite))},
+  {name: `Repeating`, count: calcTasks(tasks.filter((task) => Object.values(task.repeatingsDays).some((value) => value)))},
+  {name: `Tags`, count: calcTasks(tasks.filter((task) => task.tags.length))},
+  {name: `Archive`, count: calcTasks(tasks.filter((task) => task.isArchive))},
 ];
 
 const filtersMarkup = filterElements

@@ -4,7 +4,8 @@ import {
   getFilters,
   getBoardTasksTemplate,
   renderTasks,
-  tasksArray
+  tasksRendered,
+  noTasksTemplate
 } from './components';
 
 const renderComponent = (container, markup) => {
@@ -18,23 +19,20 @@ renderComponent(containerMenu, getMenuTemplate());
 renderComponent(containerContent, getSearchTemplate());
 renderComponent(containerContent, getFilters());
 
-if (tasksArray.length) {
+if (tasksRendered.length > 0) {
   renderComponent(containerContent, getBoardTasksTemplate());
-  const buttonLoad = document.querySelector(`.load-more`);
+  const loadButton = document.querySelector(`.load-more`);
 
   const renderTasksMore = () => {
-    buttonLoad.insertAdjacentHTML(`beforebegin`, renderTasks(tasksArray, 0, 8));
+    loadButton.insertAdjacentHTML(`beforebegin`, renderTasks(tasksRendered, 0, 8));
   };
 
-  buttonLoad.addEventListener(`click`, () => {
+  loadButton.addEventListener(`click`, () => {
     renderTasksMore();
-    if (!tasksArray.length) {
-      buttonLoad.style = `display: none`;
+    if (tasksRendered.length === 0) {
+      loadButton.style = `display: none`;
     }
   });
 } else {
-  renderComponent(containerContent, `<p class="board__no-tasks">
-    Congratulations, all tasks were completed! To create a new click on
-    «add new task» button.
-  </p>`);
+  renderComponent(containerContent, noTasksTemplate);
 }

@@ -1,3 +1,5 @@
+import {formatDate} from './task-date';
+
 export const getFormTemplate = ({dueDate, color, description}) => `
 <article class="card card--edit card--${color}">
   <form class="card__form" method="get">
@@ -31,7 +33,7 @@ export const getFormTemplate = ({dueDate, color, description}) => `
         <div class="card__details">
           <div class="card__dates">
             <button class="card__date-deadline-toggle" type="button">
-              date: <span class="card__date-status">${new Date(dueDate).toDateString()}</span>
+              date: <span class="card__date-status">${formatDate(new Date(dueDate))}</span>
             </button>
             <fieldset class="card__date-deadline" disabled>
               <label class="card__input-deadline-wrap">
