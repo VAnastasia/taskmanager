@@ -1,8 +1,9 @@
-import {getTaskTemplate} from './task';
+import {renderTasks} from './task';
 import {getFormTemplate} from './form';
 import {getLoadButtonTemplate} from './button-load';
+import {tasksRendered} from './data';
 
-export const getBoardTasksTemplate = () => `
+const getBoardTasksTemplate = () => `
 <section class="board container">
   <div class="board__filter-list">
     <a href="#" class="board__filter">SORT BY DEFAULT</a>
@@ -10,11 +11,11 @@ export const getBoardTasksTemplate = () => `
     <a href="#" class="board__filter">SORT BY DATE down</a>
   </div>
   <div class="board__tasks">
-    ${getFormTemplate()}
-    ${getTaskTemplate()}
-    ${getTaskTemplate()}
-    ${getTaskTemplate()}
+    ${getFormTemplate(tasksRendered.shift())}
+    ${renderTasks(tasksRendered, 0, 7)}
     ${getLoadButtonTemplate()}
   </div>
 </section>
 `;
+
+export {getBoardTasksTemplate};
