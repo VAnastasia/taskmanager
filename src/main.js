@@ -4,9 +4,10 @@ import {
   getFilters,
   getBoardTasksTemplate,
   renderTasks,
-  tasksRendered,
   noTasksTemplate
 } from './components';
+
+import {renderedTasks} from './data.js';
 
 const renderComponent = (container, markup) => {
   container.insertAdjacentHTML(`beforeEnd`, markup);
@@ -19,17 +20,17 @@ renderComponent(containerMenu, getMenuTemplate());
 renderComponent(containerContent, getSearchTemplate());
 renderComponent(containerContent, getFilters());
 
-if (tasksRendered.length > 0) {
+if (renderedTasks.length > 0) {
   renderComponent(containerContent, getBoardTasksTemplate());
   const loadButton = document.querySelector(`.load-more`);
 
   const renderTasksMore = () => {
-    loadButton.insertAdjacentHTML(`beforebegin`, renderTasks(tasksRendered, 0, 8));
+    loadButton.insertAdjacentHTML(`beforebegin`, renderTasks(renderedTasks, 0, 8));
   };
 
   loadButton.addEventListener(`click`, () => {
     renderTasksMore();
-    if (tasksRendered.length === 0) {
+    if (renderedTasks.length === 0) {
       loadButton.style = `display: none`;
     }
   });

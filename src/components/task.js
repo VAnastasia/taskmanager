@@ -16,7 +16,7 @@ const renderTags = (tags) =>
 const getTaskTemplate = ({
   color = `black`,
   description = ``,
-  repeatingsDays = isRepeat,
+  repeatingsDays = [],
   dueDate,
   tags = [],
   isArchive = false,
@@ -78,7 +78,7 @@ export const noTasksTemplate = `
 export const renderTasks = (tasks, begin, end) => {
   if (tasks.length > 0) {
     return tasks.splice(begin, end)
-      .map((task) => getTaskTemplate(task))
+      .map(getTaskTemplate)
       .join(``);
   }
   return ``;

@@ -1,11 +1,13 @@
 import {
   TaskDay,
-  TaskColor,
-  DESCRIPTIONS,
-  TAGS,
-  TIME_WEEK,
-  TASKS_AMOUNT
+  TaskColor
 } from './constants';
+
+const DESCRIPTIONS = [`Изучить теорию`, `Сделать домашку`, `Пройти интенсив на соточку`];
+const TAGS = [`homework`, `theory`, `practice`, `intensive`, `keks`];
+const TIME_WEEK = 7 * 24 * 60 * 60 * 1000;
+const TIME_DAY = 24 * 60 * 60 * 1000;
+const TASKS_AMOUNT = 16;
 
 const colors = Object.values(TaskColor);
 
@@ -35,9 +37,9 @@ const getRandomBoolean = (chance = 0.5) =>
 
 const days = Object.values(TaskDay);
 
-const repeatDayReducer = (week, day) => {
-  week[day] = getRandomBoolean();
-  return week;
+const repeatDayReducer = (weekdays, day) => {
+  weekdays[day] = getRandomBoolean();
+  return weekdays;
 };
 
 const getRepeatingDays = () =>
@@ -59,5 +61,6 @@ const getTask = () => ({
 const getTasks = (count) =>
   new Array(count).fill(null).map(getTask);
 
+export {TIME_DAY};
 export const tasks = getTasks(TASKS_AMOUNT);
-export const tasksRendered = tasks.slice();
+export const renderedTasks = tasks.slice();
