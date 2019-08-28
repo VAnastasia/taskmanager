@@ -1,7 +1,7 @@
-import {renderTasks} from './task';
-import {getFormTemplate} from './form';
+// import {renderTasks, Task} from './task';
+import {getFormTemplate} from './task-edit';
 import {getLoadButtonTemplate} from './button-load';
-import {renderedTasks} from './../data';
+import {renderedTasks, tasksMock, renderTask} from '../data';
 
 const getBoardTasksTemplate = () => `
 <section class="board container">
@@ -11,11 +11,14 @@ const getBoardTasksTemplate = () => `
     <a href="#" class="board__filter">SORT BY DATE down</a>
   </div>
   <div class="board__tasks">
-    ${getFormTemplate(renderedTasks.shift())}
-    ${renderTasks(renderedTasks, 0, 7)}
+
+    ${tasksMock.forEach(renderTask)}
     ${getLoadButtonTemplate()}
   </div>
 </section>
 `;
 
 export {getBoardTasksTemplate};
+
+// ${getFormTemplate(renderedTasks.shift())}
+// ${renderTasks(renderedTasks, 0, 7)}

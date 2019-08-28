@@ -1,4 +1,4 @@
-import {tasks, TIME_DAY} from './../data';
+import {tasks, TIME_DAY} from '../data';
 
 const calcTasks = (array) => {
   return array.length;

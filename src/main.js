@@ -5,6 +5,8 @@ import {
   getBoardTasksTemplate,
   renderTasks,
   noTasksTemplate
+  // Task,
+  // TaskEdit
 } from './components';
 
 import {renderedTasks} from './data.js';
@@ -21,19 +23,19 @@ renderComponent(containerContent, getSearchTemplate());
 renderComponent(containerContent, getFilters());
 
 if (renderedTasks.length > 0) {
-  renderComponent(containerContent, getBoardTasksTemplate());
+  // renderComponent(containerContent, getBoardTasksTemplate());
   const loadButton = document.querySelector(`.load-more`);
 
   const renderTasksMore = () => {
     loadButton.insertAdjacentHTML(`beforebegin`, renderTasks(renderedTasks, 0, 8));
   };
 
-  loadButton.addEventListener(`click`, () => {
-    renderTasksMore();
-    if (renderedTasks.length === 0) {
-      loadButton.style = `display: none`;
-    }
-  });
+  // loadButton.addEventListener(`click`, () => {
+  //   renderTasksMore();
+  //   if (renderedTasks.length === 0) {
+  //     loadButton.style = `display: none`;
+  //   }
+  // });
 } else {
   renderComponent(containerContent, noTasksTemplate);
 }
