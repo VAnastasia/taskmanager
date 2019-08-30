@@ -1,7 +1,7 @@
 import {formatTime, formatDate} from './task-date';
 import {createElement} from '../utils';
 
-export default class Task {
+class Task {
   constructor({color = `black`, description = ``, repeatingsDays = [], dueDate, tags = [], isArchive = false, isFavorite = false}) {
     this._description = description;
     this._dueDate = new Date(dueDate);
@@ -76,19 +76,6 @@ export default class Task {
 }
 
 export {Task};
-
-const task = new Task({
-  color: `black`,
-  description: ``,
-  repeatingsDays: [],
-  dueDate: Date.now(),
-  tags: [],
-  isArchive: false,
-  isFavorite: false
-});
-
-console.log(task.getElement());
-
 
 const checkRepeating = (repeatingsDays) =>
   Object.values(repeatingsDays).some((value) => value);
