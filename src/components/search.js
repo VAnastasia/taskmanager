@@ -1,6 +1,5 @@
 import {createElement} from '../utils';
 
-
 class Search {
   getElement() {
     if (!this._element) {
