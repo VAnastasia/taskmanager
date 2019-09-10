@@ -9,11 +9,6 @@ export const createElement = (template) => {
   return newElement.firstChild;
 };
 
-// export const render = (container, element) => {
-//   container.appendChild(element);
-// };
-
-
 export const render = (container, element, place) => {
   switch (place) {
     case Position.AFTERBEGIN:

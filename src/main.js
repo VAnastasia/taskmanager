@@ -1,15 +1,4 @@
-import {
-  getMenuTemplate,
-  getSearchTemplate,
-  getFilters,
-  getBoardTasksTemplate,
-  renderTasks,
-  noTasksTemplate
-  // Task,
-  // TaskEdit
-} from './components';
-
-import {renderedTasks, tasksMock} from './data.js';
+import {tasksMock} from './data.js';
 import {BoardTask} from './components/board-task';
 import {Position, render} from './utils';
 import {Menu} from './components/site-menu';
@@ -100,33 +89,3 @@ renderBoardTask();
 const tasksContainer = document.querySelector(`.board__tasks`);
 tasksMock.forEach(renderTask);
 renderLoadButton();
-
-
-const renderComponent = (container, markup) => {
-  container.insertAdjacentHTML(`beforeEnd`, markup);
-};
-
-
-// const containerContent = document.querySelector(`.main`);
-
-// renderComponent(containerMenu, getMenuTemplate());
-// renderComponent(containerContent, getSearchTemplate());
-// renderComponent(containerContent, getFilters());
-//
-// if (renderedTasks.length > 0) {
-//   renderComponent(containerContent, getBoardTasksTemplate());
-//   const loadButton = document.querySelector(`.load-more`);
-//
-//   const renderTasksMore = () => {
-//     loadButton.insertAdjacentHTML(`beforebegin`, renderTasks(renderedTasks, 0, 8));
-//   };
-//
-//   // loadButton.addEventListener(`click`, () => {
-//   //   renderTasksMore();
-//   //   if (renderedTasks.length === 0) {
-//   //     loadButton.style = `display: none`;
-//   //   }
-//   // });
-// } else {
-//   renderComponent(containerContent, noTasksTemplate);
-// }
