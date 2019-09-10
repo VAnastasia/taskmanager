@@ -1,12 +1,12 @@
 const dateFormat = new Intl.DateTimeFormat(`en-GB`, {
   month: `long`,
-  day: `numeric`,
+  day: `numeric`
 });
 
 const timeFormat = new Intl.DateTimeFormat(`en-GB`, {
   hour12: true,
   hour: `numeric`,
-  minute: `numeric`,
+  minute: `numeric`
 });
 
 export const formatDate = (date) => dateFormat.format(date).toUpperCase();
