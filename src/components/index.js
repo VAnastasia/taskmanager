@@ -1,8 +1,7 @@
 import {getFilters} from './filters';
-import {renderTasks, noTasksTemplate} from './task';
+import {renderTasks} from './task';
 
 export {
   getFilters,
-  renderTasks,
-  noTasksTemplate
+  renderTasks
 };

@@ -3,11 +3,6 @@ import {
   TaskColor
 } from './constants';
 
-// import {Position, render} from './utils';
-//
-// import {Task} from './components/task';
-// import {TaskEdit} from './components/task-edit';
-
 const DESCRIPTIONS = [`Изучить теорию`, `Сделать домашку`, `Пройти интенсив на соточку`];
 const TAGS = [`homework`, `theory`, `practice`, `intensive`, `keks`];
 const TIME_WEEK = 7 * 24 * 60 * 60 * 1000;
